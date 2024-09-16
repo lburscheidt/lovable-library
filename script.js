@@ -40,6 +40,8 @@ function showTable() {
 
 addBookToLibrary(theHobbit)
 showTable()
+addColumnHeaderRemove()
+addRemoveButtons()
 
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. You will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
 
@@ -63,18 +65,10 @@ submitBtn.addEventListener("click", function (event) {
   addBookToLibrary(book)
   console.log(myLibrary)
   showTable()
+  addColumnHeaderRemove()
+  addRemoveButtons()
   dialog.close()
 })
-
-/*function createBook() {
-  let title = document.getElementById("title").value
-  let author = document.getElementById("author").value
-  let pages = document.getElementById("pages").value
-  let read = document.querySelector(
-    "input[type=radio][name=readStatus]:checked"
-  ).value
-  return (book = new Book(title, author, pages, read))
-}*/
 
 const newBookBtn = document.createElement("button")
 newBookBtn.setAttribute("id", "newBookBtn")
@@ -87,3 +81,26 @@ main.appendChild(dialog)
 main.appendChild(newBookBtn)
 
 //Add a button on each book’s display to remove the book from the library. You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.
+
+function addColumnHeaderRemove() {
+  document
+    .querySelector("thead tr")
+    .insertAdjacentHTML("beforeend", `<th>Remove book</th>`)
+}
+
+function addRemoveButtons() {
+  let trs = document.querySelectorAll("tbody tr")
+  for (let tr of trs) {
+    tr.insertAdjacentHTML(
+      "beforeend",
+      `<td><button class="removeBtn" name="${tr.rowIndex - 1}">Remove this book</button></td>`
+    )
+  }
+  let removeBtns = document.querySelectorAll(".removeBtn")
+  removeBtns.forEach(btn => {
+    btn.addEventListener("click", function () {
+      myLibrary.splice(btn.name, 1)
+      showTable()
+    })
+  })
+}
