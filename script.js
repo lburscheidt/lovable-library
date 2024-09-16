@@ -6,6 +6,7 @@ function Book(title, author, pages, read) {
   this.Author = author
   this["No. of pages"] = pages
   this["Read?"] = read
+  this["BookNumber"] = ""
 }
 
 Book.prototype.info = function () {
@@ -15,6 +16,7 @@ Book.prototype.info = function () {
 
 function addBookToLibrary(book) {
   myLibrary.push(book)
+  book["Book Number"] = myLibrary.indexOf(book)
 }
 
 const theHobbit = new Book("The Hobbit", "JRR Tolkien", 300, "read")
@@ -83,3 +85,5 @@ newBookBtn.addEventListener("click", () => {
 
 main.appendChild(dialog)
 main.appendChild(newBookBtn)
+
+//Add a button on each book’s display to remove the book from the library. You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.
