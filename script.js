@@ -14,6 +14,7 @@ Book.prototype.info = function () {
 }
 
 //Add a button on each book’s display to change its read status.To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+
 Book.prototype.toggleRead = function () {
   if (this["Read?"] === "read") {
     this["Read?"] = "not read yet"
@@ -21,6 +22,14 @@ Book.prototype.toggleRead = function () {
     this["Read?"] = "read"
   }
 }
+
+/*Book.prototype.toggleRead = function () {
+  if (this["Read?"] === "read") {
+    this["Read?"] = "not read yet"
+  } else {
+    this["Read?"] = "read"
+  }
+}*/
 
 //All of your book objects are going to be stored in an array, so add a function to the script (not the constructor) that can take user’s input and store the new book objects into an array.
 
@@ -132,7 +141,19 @@ function addReadButtons() {
   for (let tr of trs) {
     tr.insertAdjacentHTML(
       "beforeend",
-      `<td><button class="readBtn">Toggle read/unread</button></td>`
+      `<td><button class="readBtn" name ="${tr.rowIndex - 1} ">Toggle read/unread</button></td>`
     )
+  }
+  let readBtns = document.querySelectorAll(".readBtn")
+  for (btn of readBtns) {
+    btn.addEventListener("click", function () {
+      let index = Number(btn.name)
+      myLibrary[index].toggleRead()
+      showTable()
+      addColumnHeaderRemove()
+      addRemoveButtons()
+      addColumnHeaderRead()
+      addReadButtons()
+    })
   }
 }
