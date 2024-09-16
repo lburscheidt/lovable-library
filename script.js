@@ -41,3 +41,10 @@ window.addEventListener("click", () => {
   addBookToLibrary()
   showTable()
 })
+
+//Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. How you decide to display this form is up to you. For example, you may wish to have a form show in a sidebar or you may wish to explore dialogs and modals using the <dialog> tag. However you do this, you will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
+
+document
+  .querySelector("main")
+  .insertAdjacentHTML("beforeend", `<button id="newBookBtn">NEW BOOK</button>`)
+  
