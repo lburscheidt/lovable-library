@@ -1,4 +1,5 @@
 const myLibrary = []
+const main = document.querySelector("main")
 
 function Book(title, author, pages, read) {
   this.Title = title
@@ -37,14 +38,25 @@ function showTable() {
   )
 }
 
-window.addEventListener("click", () => {
-  addBookToLibrary()
-  showTable()
-})
-
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. How you decide to display this form is up to you. For example, you may wish to have a form show in a sidebar or you may wish to explore dialogs and modals using the <dialog> tag. However you do this, you will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
 
-document
-  .querySelector("main")
+const dialog = document.createElement("dialog")
+dialog.innerHTML = `<form><label for='title'>Title</label><input type='text' id='title'><label for='author'>Author</label><input type ='text' id='author'><label for='pages'>No. of pages</label><input type='number' id='pages'><label for='read'>Read?</label><input type='checkbox' id='read'><input type="submit" value="Add book"></form>`
+main.appendChild(dialog)
+
+const newBookBtn = document.createElement("button")
+newBookBtn.setAttribute("id", "newBookBtn")
+newBookBtn.textContent = `NEW BOOK`
+newBookBtn.addEventListener("click", () => {
+  dialog.showModal()
+})
+main.appendChild(newBookBtn)
+
+/*.querySelector("main")
   .insertAdjacentHTML("beforeend", `<button id="newBookBtn">NEW BOOK</button>`)
-  
+
+newBookBtn.addEventListener("click", () => {
+  dialog.showModal()
+})
+main.appendChild(newBookBtn)
+*/
