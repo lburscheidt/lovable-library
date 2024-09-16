@@ -12,6 +12,16 @@ function Book(title, author, pages, read) {
 Book.prototype.info = function () {
   return `${this.Title} by ${this.Author}. ${this["No. of pages"]} pages. ${this["Read?"]}.`
 }
+
+//Add a button on each book’s display to change its read status.To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+Book.prototype.toggleRead = function () {
+  if (this["Read?"] === "read") {
+    this["Read?"] = "not read yet"
+  } else {
+    this["Read?"] = "read"
+  }
+}
+
 //All of your book objects are going to be stored in an array, so add a function to the script (not the constructor) that can take user’s input and store the new book objects into an array.
 
 function addBookToLibrary(book) {
@@ -42,6 +52,8 @@ addBookToLibrary(theHobbit)
 showTable()
 addColumnHeaderRemove()
 addRemoveButtons()
+addColumnHeaderRead()
+addReadButtons()
 
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. You will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
 
@@ -67,6 +79,8 @@ submitBtn.addEventListener("click", function (event) {
   showTable()
   addColumnHeaderRemove()
   addRemoveButtons()
+  addColumnHeaderRead()
+  addReadButtons()
   dialog.close()
 })
 
@@ -103,4 +117,22 @@ function addRemoveButtons() {
       showTable()
     })
   })
+}
+
+//Add a button on each book’s display to change its read status.To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+
+function addColumnHeaderRead() {
+  document
+    .querySelector("thead tr")
+    .insertAdjacentHTML("beforeend", `<th>Toggle Read/Unread</th>`)
+}
+
+function addReadButtons() {
+  let trs = document.querySelectorAll("tbody tr")
+  for (let tr of trs) {
+    tr.insertAdjacentHTML(
+      "beforeend",
+      `<td><button class="readBtn">Toggle read/unread</button></td>`
+    )
+  }
 }
