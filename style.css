@@ -95,7 +95,13 @@ th {
   border: 3px solid #fff;
 }
 
-button {
+input {
+  border: none;
+  border: 2px solid var(--bondi-blue);
+  border-radius: 5px;
+}
+button,
+input[type='submit'] {
   padding: 5px;
   border: none;
   border-radius: 10px;
@@ -107,4 +113,9 @@ dialog {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
 }
