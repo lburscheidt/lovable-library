@@ -49,3 +49,55 @@ h6 {
   isolation: isolate;
 }
 /*reset ends*/
+
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --bondi-blue: #0ca3b3;
+  --powder-blue: #b0dae2;
+}
+
+body {
+  background-color: var(--bondi-blue);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  height: 50px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--powder-blue);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-content: flex-start;
+}
+
+table,
+tr,
+td {
+  border-collapse: collapse;
+  border: 2px solid #fff;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+}
+
+th {
+  border: 3px solid #fff;
+}
+
+button {
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--powder-blue);
+}
