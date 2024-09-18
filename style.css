@@ -102,10 +102,15 @@ input {
 }
 button,
 input[type='submit'] {
-  padding: 5px;
+  padding: 5px 10px;
   border: none;
   border-radius: 10px;
   background-color: var(--powder-blue);
+  max-height: 40px;
+}
+
+input {
+  margin-bottom: 10px;
 }
 
 dialog {
@@ -114,8 +119,25 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   width: auto;
+  max-width: 500px;
 }
+
 form {
   display: flex;
   flex-direction: column;
+}
+
+fieldset {
+  border: none;
+  border: 2px solid var(--bondi-blue);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
 }

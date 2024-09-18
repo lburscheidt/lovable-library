@@ -60,10 +60,10 @@ addReadButtons();
 
 const dialog = document.createElement('dialog');
 dialog.innerHTML = `<form><label for='title'>Title</label><input type='text' id='title'><label for='author'>Author</label><input type ='text' id='author'><label for='pages'>No. of pages</label><input type='number' id='pages'>
+<fieldset>
+<label for='read'><input type='radio' name='readStatus' id='read' value='read'> Read</label>
 
-<label for='read'>Read</label><input type='radio' name='readStatus' id='read' value='read'>
-
-<label for="notReadYet">Not read yet</label><input type='radio' name='readStatus' value='not read yet' id='notReadYet'><input type="submit" id="submit" value="Add book"></form>`;
+<label for="notReadYet"><input type='radio' name='readStatus' value='not read yet' id='notReadYet'> Not read yet</label></fieldset><input type="submit" id="submit" value="Add book"></form>`;
 main.appendChild(dialog);
 
 const submitBtn = document.getElementById('submit');
@@ -87,7 +87,7 @@ submitBtn.addEventListener('click', function (event) {
 
 const newBookBtn = document.createElement('button');
 newBookBtn.setAttribute('id', 'newBookBtn');
-newBookBtn.textContent = `NEW BOOK`;
+newBookBtn.textContent = `New book`;
 newBookBtn.addEventListener('click', () => {
   dialog.showModal();
 });
