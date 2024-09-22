@@ -3,14 +3,8 @@ const main = document.querySelector("main");
 const newBookBtn = document.createElement("button");
 newBookBtn.setAttribute("id", "newBookBtn");
 newBookBtn.textContent = `New book`;
-newBookBtn.addEventListener("click", () => {
-	dialog.showModal();
-});
-main.appendChild(newBookBtn);
 
-window.onload = event => {
-	showTable();
-};
+main.appendChild(newBookBtn);
 
 function Book(title, author, pages, read) {
 	this.Title = title;
@@ -41,6 +35,14 @@ function addBookToLibrary(book) {
 	/*book["Book Number"] = myLibrary.indexOf(book)*/
 }
 
+const initialBook = Object.create(Book);
+initialBook.title = "";
+initialBook.author = "";
+initialBook["No. of pages"] = "";
+initialBook["Read?"] = "";
+
+addBookToLibrary(initialBook);
+showTable();
 //Write a function that loops through the array and displays each book on the page. You can display them in some sort of table, or each on their own “card”. It might help for now to manually add a few books to your array so you can see the display.
 
 function showTable() {
@@ -72,7 +74,11 @@ dialog.innerHTML = `<form><label for='title'>Title</label><input type='text' id=
 <label for='read'><input type='radio' name='readStatus' id='read' value='read'> Read</label>
 
 <label for="notReadYet"><input type='radio' name='readStatus' value='not read yet' id='notReadYet'> Not read yet</label></fieldset><input type="submit" id="submit" value="Add book"></form>`;
+
 main.appendChild(dialog);
+newBookBtn.addEventListener("click", () => {
+	dialog.show();
+});
 
 const submitBtn = document.getElementById("submit");
 submitBtn.addEventListener("click", function (event) {
