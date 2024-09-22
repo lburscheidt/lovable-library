@@ -36,8 +36,8 @@ function addBookToLibrary(book) {
 }
 
 const initialBook = Object.create(Book);
-initialBook.title = "";
-initialBook.author = "";
+initialBook.Title = "";
+initialBook.Author = "";
 initialBook["No. of pages"] = "";
 initialBook["Read?"] = "";
 
@@ -69,11 +69,34 @@ addReadButtons();
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. You will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
 
 const dialog = document.createElement("dialog");
-dialog.innerHTML = `<form><label for='title'>Title</label><input type='text' id='title'><label for='author'>Author</label><input type ='text' id='author'><label for='pages'>No. of pages</label><input type='number' id='pages'>
+dialog.innerHTML = `<form><label for='title'>Title</label><input type='text' id='title' minlength='1' required><label for='author'>Author</label><input type ='text' id='author' minlength='1' required><label for='pages'>No. of pages</label><input type='number' id='pages' min='1' required>
 <fieldset>
 <label for='read'><input type='radio' name='readStatus' id='read' value='read'> Read</label>
+<label for="notReadYet"><input type='radio' name='readStatus' value='not read yet' id='notReadYet' checked> Not read yet</label></fieldset><input type="submit" id="submit" value="Add book"></form>`;
 
-<label for="notReadYet"><input type='radio' name='readStatus' value='not read yet' id='notReadYet'> Not read yet</label></fieldset><input type="submit" id="submit" value="Add book"></form>`;
+function validateInput() {
+	let titleInput = document.getElementById("title");
+	let titleValidity = titleInput.checkValidity();
+	let authorInput = document.getElementById("author").textContent;
+	let authorValidity = authorInput.checkValidity();
+	let pagesInput = document.getElementById("pages");
+	let pagesValidity = pagesInput.checkValidity();
+	if (titleValidity && authorValidity && pagesValidity) {
+		return true;
+	} else {
+		if (!titleValidity) {
+			titleInput.innerHTML = titleInput.validationMessage;
+		}
+		if (!authorValidity) {
+			authorInput.innerHTML = authorInput.validationMessage;
+		}
+		if (!pagesValidity) {
+			pagesInput.innerHTML = pagesInput.validationMessage;
+		}
+	}
+}
+
+/*let readInput = document.getElementById("read");*/
 
 main.appendChild(dialog);
 newBookBtn.addEventListener("click", () => {
@@ -83,19 +106,23 @@ newBookBtn.addEventListener("click", () => {
 const submitBtn = document.getElementById("submit");
 submitBtn.addEventListener("click", function (event) {
 	event.preventDefault();
-	book = new Book(
-		document.getElementById("title").value,
-		document.getElementById("author").value,
-		document.getElementById("pages").value,
-		document.querySelector("input[type=radio][name=readStatus]:checked").value,
-	);
-	addBookToLibrary(book);
-	showTable();
-	addColumnHeaderRemove();
-	addRemoveButtons();
-	addColumnHeaderRead();
-	addReadButtons();
-	dialog.close();
+	if (validateInput()) {
+		book = new Book(
+			document.getElementById("title").value,
+			document.getElementById("author").value,
+			document.getElementById("pages").value,
+			document.querySelector(
+				"input[type=radio][name=readStatus]:checked",
+			).value,
+		);
+		addBookToLibrary(book);
+		showTable();
+		addColumnHeaderRemove();
+		addRemoveButtons();
+		addColumnHeaderRead();
+		addReadButtons();
+		dialog.close();
+	}
 });
 
 main.appendChild(dialog);
