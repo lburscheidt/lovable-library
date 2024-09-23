@@ -4,7 +4,7 @@ const newBookBtn = document.createElement("button");
 newBookBtn.setAttribute("id", "newBookBtn");
 newBookBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Add book';
 
-main.appendChild(newBookBtn);
+aside.appendChild(newBookBtn);
 
 function Book(title, author, pages, read) {
 	this.Title = title;
@@ -199,7 +199,6 @@ function addRemoveButtons() {
 		});
 	});
 }
-
 
 function addColumnHeaderRead() {
 	document
