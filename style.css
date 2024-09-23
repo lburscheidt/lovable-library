@@ -91,6 +91,8 @@ h6 {
 
 .grid {
 	display: grid;
+	align-content: center;
+	justify-items: center;
 	grid-template-columns: repeat(3, calc(100% / 3));
 	grid-template-rows: repeat(3, calc(100% / 3));
 	gap: 20px;
@@ -119,7 +121,11 @@ input[type="submit"] {
 	background-color: lightblue;
 	max-height: 40px;
 }
-
+.buttons {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
 input {
 	margin-bottom: 10px;
 }
@@ -175,6 +181,7 @@ dialog::backdrop {
 	display: none;
 }
 card {
+	width: 90%;
 	padding: 15px;
 	background-color: lightcoral;
 	border: none;

@@ -42,7 +42,7 @@ function onFormSubmit(event) {
 	let read = data.get("readStatus");
 	newBook = new Book(title, author, pages, read);
 	addBookToLibrary(newBook);
-	createCard(newBook);
+	myLibrary.map(createCard);
 	dialog.close();
 }
 
@@ -53,6 +53,7 @@ newBookBtn.addEventListener("click", () => {
 function createCard(book) {
 	let content = document.querySelector("content");
 	let card = document.createElement("card");
+	card.setAttribute("id", myLibrary.indexOf(book));
 	let cardTitle = document.createElement("h1");
 	cardTitle.textContent = book.title;
 	console.log(cardTitle);
@@ -63,9 +64,15 @@ function createCard(book) {
 	let cardRead = document.createElement("p");
 	cardRead.textContent = book.read;
 	let buttonParagraph = document.createElement("p");
+	buttonParagraph.classList.add("buttons");
 	let cardRemoveBtn = document.createElement("button");
 	cardRemoveBtn.textContent = "Remove";
+	cardRemoveBtn.classList.add("removeBtn");
+	cardRemoveBtn.addEventListener("click", function () {
+		removeBookFromLibrary(card.id);
+	});
 	let cardReadBtn = document.createElement("button");
+	cardReadBtn.classList.add("readBtn");
 	book.read == "read"
 		? (cardReadBtn.textContent = "Mark unread")
 		: (cardReadBtn.textContent = "Mark read");
@@ -78,13 +85,43 @@ function createCard(book) {
 	buttonParagraph.appendChild(cardRemoveBtn);
 	buttonParagraph.appendChild(cardReadBtn);
 	content.appendChild(card);
+	console.log(cardRemoveBtn.id);
 }
 
-let theHobbit = new Book("The Hobbit", "JRR Tolkien", "250", "read");
-addBookToLibrary(theHobbit);
+let theHobbit = new Book("The Hobbit", "JRR Tolkien", "250 pages", "read");
 
+let theNeuromancer = new Book(
+	"The Neuromancer",
+	"some author",
+	"200 pages",
+	"not read yet",
+);
+
+addBookToLibrary(theHobbit);
+addBookToLibrary(theNeuromancer);
+console.log(myLibrary);
 myLibrary.map(createCard);
 
+function removeBookFromLibrary(index) {
+	let content = document.querySelector("content");
+	content.innerHTML = "";
+	console.log(myLibrary);
+	myLibrary.splice(index, 1);
+	myLibrary.map(createCard);
+}
+
+
+
+
+/*
+let readBtns = document.querySelectorAll("readBtn");
+
+readBtns.forEach(btn =>
+	btn.addEventListener("click", event => {
+		toggleRead;
+	}),
+);
+*/
 /*
 const main = document.querySelector("main");
 const bookDialog = document.createElement("dialog");
