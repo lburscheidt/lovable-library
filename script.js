@@ -1,6 +1,7 @@
 const myLibrary = [];
 
 const aside = document.querySelector("aside");
+const submitBtn = document.querySelector("submit");
 const newBookBtn = document.createElement("button");
 newBookBtn.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Add book";
 aside.appendChild(newBookBtn);
@@ -29,9 +30,27 @@ function addBookToLibrary(book) {
 }
 
 const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
+form.addEventListener("submit", onFormSubmit);
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	let data = new FormData(event.target);
+	let title = data.get("title");
+	let author = data.get("author");
+	let pages = data.get("pages");
+	let read = data.get("readStatus");
+	let newBook = new Book(title, author, pages, read);
+	console.log(newBook);
+	dialog.close();
+}
 
 newBookBtn.addEventListener("click", () => {
 	dialog.showModal();
+});
+
+/*submitBtn.addEventListener("click", () => {
+	dialog.close();
 });
 
 /*
