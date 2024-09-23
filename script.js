@@ -28,15 +28,11 @@ function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
 
-const modal = document.querySelector("modal");
-const modalContainer = document.querySelector("modal-container");
+const dialog = document.querySelector("dialog");
 
-function openModal() {
-	modal.classList.remove("hidden");
-	modalContainer.classList.remove("hidden");
-}
-
-newBookBtn.addEventListener("click", openModal);
+newBookBtn.addEventListener("click", () => {
+	dialog.showModal();
+});
 
 /*
 const main = document.querySelector("main");
