@@ -1,4 +1,5 @@
 const myLibrary = [];
+
 const aside = document.querySelector("aside");
 const newBookBtn = document.createElement("button");
 newBookBtn.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Add book";
@@ -26,6 +27,17 @@ Book.prototype.toggleRead = function () {
 function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
+
+const modal = document.querySelector("modal");
+const modalContainer = document.querySelector("modal-container");
+
+function openModal() {
+	modal.classList.remove("hidden");
+	modalContainer.classList.remove("hidden");
+}
+
+newBookBtn.addEventListener("click", openModal);
+
 /*
 const main = document.querySelector("main");
 const bookDialog = document.createElement("dialog");
@@ -130,7 +142,7 @@ function validateInput() {
 	}
 }
 */
-
+/*
 submitBtn.addEventListener("click", function (event) {
 	event.preventDefault();
 	if (validateInput()) {
@@ -204,3 +216,4 @@ function addReadButtons() {
 		});
 	}
 }
+*/
