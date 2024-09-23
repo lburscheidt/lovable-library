@@ -165,6 +165,9 @@ form {
 	display: flex;
 	flex-direction: column;
 }
+cross {
+	align-self: flex-end;
+}
 
 fieldset {
 	border: 2px solid #000;

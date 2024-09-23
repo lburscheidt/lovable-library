@@ -33,7 +33,10 @@ function addBookToLibrary(book) {
 const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
 form.addEventListener("submit", onFormSubmit);
-
+const cross = document.getElementById("cross");
+cross.addEventListener("click", () => {
+	dialog.close();
+});
 /*
 let pagesInput = document.getElementById("pages").value;
 pagesInput.onchange = checkNumber;
