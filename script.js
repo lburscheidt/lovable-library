@@ -1,5 +1,6 @@
 const myLibrary = [];
 const main = document.querySelector("main");
+const aside = document.querySelector("aside");
 const newBookBtn = document.createElement("button");
 newBookBtn.setAttribute("id", "newBookBtn");
 newBookBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Add book';
