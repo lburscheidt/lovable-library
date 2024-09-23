@@ -7,14 +7,14 @@ newBookBtn.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Add book";
 aside.appendChild(newBookBtn);
 
 function Book(title, author, pages, read) {
-	this.Title = title;
-	this.Author = author;
-	this["No. of pages"] = pages;
-	this["Read?"] = read;
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.read = read;
 }
 
 Book.prototype.info = function () {
-	return `${this.Title} by ${this.Author}. ${this["No. of pages"]} pages. ${this["Read?"]}.`;
+	return `${this.Title} by ${this.Author}. ${this.pages}. ${this.read}.`;
 };
 
 Book.prototype.toggleRead = function () {
@@ -40,8 +40,9 @@ function onFormSubmit(event) {
 	let author = data.get("author");
 	let pages = data.get("pages");
 	let read = data.get("readStatus");
-	let newBook = new Book(title, author, pages, read);
-	console.log(newBook);
+	newBook = new Book(title, author, pages, read);
+	addBookToLibrary(newBook);
+	createCard(newBook);
 	dialog.close();
 }
 
@@ -49,9 +50,40 @@ newBookBtn.addEventListener("click", () => {
 	dialog.showModal();
 });
 
-/*submitBtn.addEventListener("click", () => {
-	dialog.close();
-});
+function createCard(book) {
+	let content = document.querySelector("content");
+	let card = document.createElement("card");
+	let cardTitle = document.createElement("h1");
+	cardTitle.textContent = book.title;
+	console.log(cardTitle);
+	let cardAuthor = document.createElement("p");
+	cardAuthor.textContent = book.author;
+	let cardPages = document.createElement("p");
+	cardPages.textContent = book.pages;
+	let cardRead = document.createElement("p");
+	cardRead.textContent = book.read;
+	let buttonParagraph = document.createElement("p");
+	let cardRemoveBtn = document.createElement("button");
+	cardRemoveBtn.textContent = "Remove";
+	let cardReadBtn = document.createElement("button");
+	book.read == "read"
+		? (cardReadBtn.textContent = "Mark unread")
+		: (cardReadBtn.textContent = "Mark read");
+
+	card.appendChild(cardTitle);
+	card.appendChild(cardAuthor);
+	card.appendChild(cardPages);
+	card.appendChild(cardRead);
+	card.appendChild(buttonParagraph);
+	buttonParagraph.appendChild(cardRemoveBtn);
+	buttonParagraph.appendChild(cardReadBtn);
+	content.appendChild(card);
+}
+
+let theHobbit = new Book("The Hobbit", "JRR Tolkien", "250", "read");
+addBookToLibrary(theHobbit);
+
+myLibrary.map(createCard);
 
 /*
 const main = document.querySelector("main");

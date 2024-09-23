@@ -174,3 +174,13 @@ dialog::backdrop {
 .hidden {
 	display: none;
 }
+card {
+	padding: 15px;
+	background-color: lightcoral;
+	border: none;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-around;
+}
