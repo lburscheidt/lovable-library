@@ -68,11 +68,73 @@ addReadButtons();
 
 //Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. You will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. This is where event.preventDefault(); will come in handy. Check out the documentation for event.preventDefault and see how you can solve this issue!
 
-const dialog = document.createElement("dialog");
-dialog.innerHTML = `<form><label for='title'>Title</label><input type='text' id='title' minlength='1' required><label for='author'>Author</label><input type ='text' id='author' minlength='1' required><label for='pages'>No. of pages</label><input type='number' id='pages' min='1' required>
-<fieldset>
-<label for='read'><input type='radio' name='readStatus' id='read' value='read'> Read</label>
-<label for="notReadYet"><input type='radio' name='readStatus' value='not read yet' id='notReadYet' checked> Not read yet</label></fieldset><input type="submit" id="submit" value="Add book"></form>`;
+const bookDialog = document.createElement("dialog");
+const bookForm = document.createElement("form");
+const titleLabel = document.createElement("label");
+const titleInput = document.createElement("input");
+titleLabel.textContent = "Title";
+titleLabel.setAttribute("for", "title");
+titleInput.setAttribute("id", "title");
+titleInput.setAttribute("type", "text");
+titleInput.setAttribute("minlength", "1");
+titleInput.required = true;
+
+const authorLabel = document.createElement("label");
+const authorInput = document.createElement("input");
+authorLabel.textContent = "Author";
+authorLabel.setAttribute("for", "author");
+authorInput.setAttribute("id", "author");
+authorInput.setAttribute("type", "text");
+authorInput.setAttribute("minlength", "1");
+authorInput.required = true;
+
+const pagesLabel = document.createElement("label");
+const pagesInput = document.createElement("input");
+pagesLabel.textContent = "No. of pages";
+pagesLabel.setAttribute("for", "pages");
+pagesInput.setAttribute("id", "pages");
+pagesInput.setAttribute("type", "text");
+pagesInput.setAttribute("min", "1");
+pagesInput.required = true;
+
+const radiobuttonFieldset = document.createElement("fieldset");
+const readLabel = document.createElement("label");
+readLabel.textContent = "Read";
+const readInput = document.createElement("input");
+readInput.setAttribute("type", "radio");
+readInput.setAttribute("id", "read");
+readInput.setAttribute("name", "readStatus");
+readInput.setAttribute("value", "read");
+
+const notReadLabel = document.createElement("label");
+const notReadInput = document.createElement("input");
+notReadLabel.textContent = "Not read yet";
+notReadInput.setAttribute("type", "radio");
+notReadInput.setAttribute("id", "notReadYet");
+notReadInput.setAttribute("name", "readStatus");
+notReadInput.setAttribute("value", "not read yet");
+
+const submitBtn = document.createElement("input");
+submitBtn.setAttribute("id", "submit");
+submitBtn.setAttribute("type", "submit");
+submitBtn.setAttribute("value", "Add book");
+
+bookDialog.appendChild(bookForm);
+bookForm.appendChild(titleLabel);
+bookForm.appendChild(titleInput);
+
+bookForm.appendChild(authorLabel);
+bookForm.appendChild(authorInput);
+
+bookForm.appendChild(pagesLabel);
+bookForm.appendChild(pagesInput);
+
+bookForm.appendChild(radiobuttonFieldset);
+radiobuttonFieldset.appendChild(readLabel);
+radiobuttonFieldset.appendChild(notReadLabel);
+readLabel.appendChild(readInput);
+notReadLabel.appendChild(notReadInput);
+
 
 function validateInput() {
 	let titleInput = document.getElementById("title");
@@ -96,14 +158,14 @@ function validateInput() {
 	}
 }
 
-/*let readInput = document.getElementById("read");*/
 
-main.appendChild(dialog);
+
+main.appendChild(bookDialog);
 newBookBtn.addEventListener("click", () => {
-	dialog.show();
+	bookDialog.show();
 });
 
-const submitBtn = document.getElementById("submit");
+
 submitBtn.addEventListener("click", function (event) {
 	event.preventDefault();
 	if (validateInput()) {
@@ -121,11 +183,11 @@ submitBtn.addEventListener("click", function (event) {
 		addRemoveButtons();
 		addColumnHeaderRead();
 		addReadButtons();
-		dialog.close();
+		bookDialog.close();
 	}
 });
 
-main.appendChild(dialog);
+main.appendChild(bookDialog);
 main.appendChild(newBookBtn);
 
 //Add a button on each book’s display to remove the book from the library. You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.
