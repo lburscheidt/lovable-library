@@ -59,6 +59,7 @@ h6 {
 .parent {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	height: 100vh;
 }
 
@@ -104,23 +105,18 @@ h6 {
 	border: 10px solid #f5cc8b;
 }
 
-body {
-	background-color: #282c35;
-	font-family: Verdana;
-	font-weight: 600;
-}
-
 input {
 	border: none;
 	border: 2px solid var(--bondi-blue);
 	border-radius: 5px;
 }
+
 button,
 input[type="submit"] {
 	padding: 5px 10px;
 	border: none;
 	border-radius: 10px;
-	background-color: var(--powder-blue);
+	background-color: lightblue;
 	max-height: 40px;
 }
 
@@ -155,4 +151,18 @@ fieldset {
 
 label {
 	display: block;
+}
+
+.modal-container {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+}
+
+.modal {
+	width: 500px;
+	height: 400px;
+	position: relative;
 }

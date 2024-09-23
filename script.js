@@ -1,10 +1,7 @@
 const myLibrary = [];
-const main = document.querySelector("main");
 const aside = document.querySelector("aside");
 const newBookBtn = document.createElement("button");
-newBookBtn.setAttribute("id", "newBookBtn");
-newBookBtn.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Add book';
-
+newBookBtn.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Add book";
 aside.appendChild(newBookBtn);
 
 function Book(title, author, pages, read) {
@@ -29,37 +26,8 @@ Book.prototype.toggleRead = function () {
 function addBookToLibrary(book) {
 	myLibrary.push(book);
 }
-
-/*const initialBook = Object.create(Book);
-initialBook.Title = "";
-initialBook.Author = "";
-initialBook["No. of pages"] = "";
-initialBook["Read?"] = "";
-
-addBookToLibrary(initialBook);
-showTable();*/
-
-function showTable() {
-	oldTable = document.querySelector("table");
-	if (oldTable) {
-		oldTable.parentNode.removeChild(oldTable);
-	}
-	document.querySelector("main").insertAdjacentHTML(
-		"afterbegin",
-		`<table id="myCatalog"><thead><tr><th>
-   ${Object.keys(myLibrary[0]).join("<th>")}
-  </thead><tbody><tr><td>${myLibrary
-		.map(e => Object.values(e).join("<td>"))
-		.join("<tr><td>")}</table>`,
-	);
-}
-
-showTable();
-addColumnHeaderRemove();
-addRemoveButtons();
-addColumnHeaderRead();
-addReadButtons();
-
+/*
+const main = document.querySelector("main");
 const bookDialog = document.createElement("dialog");
 const bookForm = document.createElement("form");
 const titleLabel = document.createElement("label");
@@ -126,7 +94,20 @@ radiobuttonFieldset.appendChild(readLabel);
 radiobuttonFieldset.appendChild(notReadLabel);
 readLabel.appendChild(readInput);
 notReadLabel.appendChild(notReadInput);
+main.appendChild(bookDialog);
 
+newBookBtn.addEventListener("click", () => {
+	bookDialog.showModal();
+});
+
+/*
+
+addRemoveButtons();
+
+addReadButtons();
+
+
+/*
 function validateInput() {
 	let titleInput = document.getElementById("title");
 	let titleValidity = titleInput.checkValidity();
@@ -148,11 +129,7 @@ function validateInput() {
 		}
 	}
 }
-
-main.appendChild(bookDialog);
-newBookBtn.addEventListener("click", () => {
-	bookDialog.show();
-});
+*/
 
 submitBtn.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -175,7 +152,6 @@ submitBtn.addEventListener("click", function (event) {
 	}
 });
 
-main.appendChild(bookDialog);
 main.appendChild(newBookBtn);
 
 function addColumnHeaderRemove() {
