@@ -130,6 +130,24 @@ input {
 	margin-bottom: 10px;
 }
 
+input:invalid {
+	border-color: #900;
+	background-color: #fdd;
+}
+
+input:invalid ~ label {
+	color: #900;
+}
+
+input:focus:invalid {
+	color: #900;
+	background-color: #fff;
+}
+
+input:focus:invalid ~ label {
+	color: #900;
+}
+
 dialog {
 	position: absolute;
 	top: 50%;
