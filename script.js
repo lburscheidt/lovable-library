@@ -18,10 +18,10 @@ Book.prototype.info = function () {
 };
 
 Book.prototype.toggleRead = function () {
-	if (this["Read?"] === "read") {
-		this["Read?"] = "not read yet";
+	if (this.read == "read") {
+		this.read = "not read yet";
 	} else {
-		this["Read?"] = "read";
+		this.read = "read";
 	}
 };
 
@@ -56,7 +56,6 @@ function createCard(book) {
 	card.setAttribute("id", myLibrary.indexOf(book));
 	let cardTitle = document.createElement("h1");
 	cardTitle.textContent = book.title;
-	console.log(cardTitle);
 	let cardAuthor = document.createElement("p");
 	cardAuthor.textContent = book.author;
 	let cardPages = document.createElement("p");
@@ -72,11 +71,22 @@ function createCard(book) {
 		removeBookFromLibrary(card.id);
 	});
 	let cardReadBtn = document.createElement("button");
-	cardReadBtn.classList.add("readBtn");
-	book.read == "read"
-		? (cardReadBtn.textContent = "Mark unread")
-		: (cardReadBtn.textContent = "Mark read");
-
+	cardReadBtn.setAttribute("id", myLibrary.indexOf(book));
+	cardReadBtn.setAttribute("class", "readBtn");
+	cardReadBtn.addEventListener("click", function () {
+		myLibrary[card.id].toggleRead();
+		cardRead.textContent = book.read;
+		if (book.read == "read") {
+			cardReadBtn.textContent = "Mark unread";
+		} else {
+			cardReadBtn.textContent = "Mark read";
+		}
+	});
+	if (book.read == "read") {
+		cardReadBtn.textContent = "Mark unread";
+	} else {
+		cardReadBtn.textContent = "Mark read";
+	}
 	card.appendChild(cardTitle);
 	card.appendChild(cardAuthor);
 	card.appendChild(cardPages);
@@ -85,7 +95,6 @@ function createCard(book) {
 	buttonParagraph.appendChild(cardRemoveBtn);
 	buttonParagraph.appendChild(cardReadBtn);
 	content.appendChild(card);
-	console.log(cardRemoveBtn.id);
 }
 
 let theHobbit = new Book("The Hobbit", "JRR Tolkien", "250 pages", "read");
@@ -99,29 +108,15 @@ let theNeuromancer = new Book(
 
 addBookToLibrary(theHobbit);
 addBookToLibrary(theNeuromancer);
-console.log(myLibrary);
 myLibrary.map(createCard);
 
 function removeBookFromLibrary(index) {
 	let content = document.querySelector("content");
 	content.innerHTML = "";
-	console.log(myLibrary);
 	myLibrary.splice(index, 1);
 	myLibrary.map(createCard);
 }
 
-
-
-
-/*
-let readBtns = document.querySelectorAll("readBtn");
-
-readBtns.forEach(btn =>
-	btn.addEventListener("click", event => {
-		toggleRead;
-	}),
-);
-*/
 /*
 const main = document.querySelector("main");
 const bookDialog = document.createElement("dialog");
@@ -227,26 +222,7 @@ function validateInput() {
 }
 */
 /*
-submitBtn.addEventListener("click", function (event) {
-	event.preventDefault();
-	if (validateInput()) {
-		book = new Book(
-			document.getElementById("title").value,
-			document.getElementById("author").value,
-			document.getElementById("pages").value,
-			document.querySelector(
-				"input[type=radio][name=readStatus]:checked",
-			).value,
-		);
-		addBookToLibrary(book);
-		showTable();
-		addColumnHeaderRemove();
-		addRemoveButtons();
-		addColumnHeaderRead();
-		addReadButtons();
-		bookDialog.close();
-	}
-});
+
 
 main.appendChild(newBookBtn);
 
