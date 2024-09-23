@@ -88,6 +88,22 @@ h6 {
 	border: 10px solid #f5cc8b;
 }
 
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, calc(100% / 3));
+	grid-template-rows: repeat(3, calc(100% / 3));
+	gap: 20px;
+
+	margin: 1%;
+	padding: 20px;
+	font-size: 20px;
+	line-height: 20px;
+	color: #ffe8c3;
+	background-color: #eab768;
+	border-radius: 10px;
+	border: 10px solid #f5cc8b;
+}
+
 body {
 	background-color: #282c35;
 	font-family: Verdana;
