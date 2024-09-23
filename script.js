@@ -3,6 +3,7 @@ const myLibrary = [];
 const aside = document.querySelector("aside");
 const submitBtn = document.querySelector("submit");
 const newBookBtn = document.createElement("button");
+newBookBtn.setAttribute("id", "newBookBtn");
 newBookBtn.innerHTML = "<i class='fa-solid fa-circle-plus'></i>Add book";
 aside.appendChild(newBookBtn);
 
@@ -33,6 +34,15 @@ const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
 form.addEventListener("submit", onFormSubmit);
 
+/*
+let pagesInput = document.getElementById("pages").value;
+pagesInput.onchange = checkNumber;
+
+function checkNumber() {
+	const numbersRegex = /\d/gim;
+	if(numbersRegex.test(pagesInput))
+}*/
+
 function onFormSubmit(event) {
 	let content = document.querySelector("content");
 	event.preventDefault();
@@ -61,7 +71,7 @@ function createCard(book) {
 	let cardAuthor = document.createElement("p");
 	cardAuthor.textContent = book.author;
 	let cardPages = document.createElement("p");
-	cardPages.textContent = book.pages;
+	cardPages.textContent = `${book.pages} pages`;
 	let cardRead = document.createElement("p");
 	cardRead.textContent = book.read;
 	let buttonParagraph = document.createElement("p");
@@ -99,12 +109,12 @@ function createCard(book) {
 	content.appendChild(card);
 }
 
-let theHobbit = new Book("The Hobbit", "JRR Tolkien", "250 pages", "read");
+let theHobbit = new Book("The Hobbit", "JRR Tolkien", "250", "read");
 
 let theNeuromancer = new Book(
 	"The Neuromancer",
 	"some author",
-	"200 pages",
+	"200",
 	"not read yet",
 );
 

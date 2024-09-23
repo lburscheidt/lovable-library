@@ -59,35 +59,36 @@ h1 {
 	line-height: 2.5rem;
 }
 
-.parent {
+body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	height: 100vh;
 }
 
-.main {
+main {
 	display: flex;
 	flex-grow: 1;
 }
 
-.content {
+content {
 	flex-grow: 1;
-	display: grid;
-	justify-items: start;
 }
 
 /* --------- Non-flexbox related styles --------- */
+
 .child {
 	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	font-size: 1rem;
-	line-height: 2rem;
+	align-items: center;
+	justify-content: center;
+	margin: 1%;
+	padding: 20px;
+	font-size: 20px;
+	line-height: 20px;
 	color: #ffe8c3;
 	background-color: #eab768;
 	border-radius: 10px;
-	border: 10px solid #eab768;
+	border: 10px solid #f5cc8b;
 }
 
 .grid {
@@ -97,7 +98,6 @@ h1 {
 	grid-template-columns: repeat(3, calc(100% / 3));
 	grid-template-rows: repeat(3, calc(100% / 3));
 	gap: 20px;
-
 	margin: 1%;
 	padding: 20px;
 	font-size: 20px;
@@ -122,6 +122,10 @@ input[type="submit"] {
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
+}
+
+#newBookBtn {
+	align-self: flex-start;
 }
 
 input {
@@ -174,12 +178,6 @@ fieldset {
 
 label {
 	display: block;
-}
-
-dialog {
-	width: 500px;
-	height: 430px;
-	position: relative;
 }
 
 dialog::backdrop {
