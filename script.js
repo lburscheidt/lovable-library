@@ -34,6 +34,7 @@ const form = document.querySelector("form");
 form.addEventListener("submit", onFormSubmit);
 
 function onFormSubmit(event) {
+	let content = document.querySelector("content");
 	event.preventDefault();
 	let data = new FormData(event.target);
 	let title = data.get("title");
@@ -42,6 +43,7 @@ function onFormSubmit(event) {
 	let read = data.get("readStatus");
 	newBook = new Book(title, author, pages, read);
 	addBookToLibrary(newBook);
+	content.innerHTML = "";
 	myLibrary.map(createCard);
 	dialog.close();
 }
