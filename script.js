@@ -195,9 +195,6 @@ newBookBtn.addEventListener("click", () => {
 
 /*
 
-addRemoveButtons();
-
-addReadButtons();
 
 
 /*
@@ -226,45 +223,6 @@ function validateInput() {
 /*
 
 
-main.appendChild(newBookBtn);
-
-function addColumnHeaderRemove() {
-	document
-		.querySelector("thead tr")
-		.insertAdjacentHTML("beforeend", `<th>Remove book</th>`);
-}
-
-function addRemoveButtons() {
-	let trs = document.querySelectorAll("tbody tr");
-	for (let tr of trs) {
-		tr.insertAdjacentHTML(
-			"beforeend",
-			`<td><button class="removeBtn" name="${tr.rowIndex - 1}">Remove this book</button></td>`,
-		);
-	}
-	let removeBtns = document.querySelectorAll(".removeBtn");
-	removeBtns.forEach(btn => {
-		btn.addEventListener("click", function () {
-			myLibrary.splice(btn.name, 1);
-			showTable();
-		});
-	});
-}
-
-function addColumnHeaderRead() {
-	document
-		.querySelector("thead tr")
-		.insertAdjacentHTML("beforeend", `<th>Toggle Read/Unread</th>`);
-}
-
-function addReadButtons() {
-	let trs = document.querySelectorAll("tbody tr");
-	for (let tr of trs) {
-		tr.insertAdjacentHTML(
-			"beforeend",
-			`<td><button class="readBtn" name ="${tr.rowIndex - 1} ">Toggle read/unread</button></td>`,
-		);
-	}
 	let readBtns = document.querySelectorAll(".readBtn");
 	for (btn of readBtns) {
 		btn.addEventListener("click", function () {
